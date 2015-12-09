@@ -572,7 +572,8 @@ public class BoxSession extends BoxObject implements BoxAuthentication.AuthListe
             this.mSession = session;
         }
 
-        public BoxSession send() throws BoxException {
+        @Override
+        protected BoxSession onSend() throws BoxException {
             synchronized (mSession) {
                 if (mSession.getUser() != null) {
                     BoxAuthentication.getInstance().logout(mSession);
@@ -597,7 +598,8 @@ public class BoxSession extends BoxObject implements BoxAuthentication.AuthListe
             this.mSession = session;
         }
 
-        public BoxSession send() throws BoxException {
+        @Override
+        public BoxSession onSend() throws BoxException {
             BoxAuthentication.BoxAuthenticationInfo refreshedInfo = null;
             try {
                 // block until this session is finished refreshing.
@@ -644,7 +646,8 @@ public class BoxSession extends BoxObject implements BoxAuthentication.AuthListe
             this.mSession = session;
         }
 
-        public BoxSession send() throws BoxException {
+        @Override
+        public BoxSession onSend() throws BoxException {
             synchronized (mSession) {
                 if (mSession.getUser() == null) {
                     if (mSession.getAuthInfo() != null && !SdkUtils.isBlank(mSession.getAuthInfo().accessToken())) {

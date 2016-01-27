@@ -187,7 +187,7 @@ public class BoxAuthentication {
         return listeners;
     }
 
-    private void clearCache(BoxSession session) {
+    public static void clearCache(BoxSession session) {
         File cacheDir = session.getCacheDir();
         if (cacheDir.exists()) {
             File[] files = cacheDir.listFiles();
@@ -199,7 +199,7 @@ public class BoxAuthentication {
         }
     }
 
-    private void deleteFilesRecursively(File fileOrDirectory) {
+    private static void deleteFilesRecursively(File fileOrDirectory) {
         if (fileOrDirectory != null) {
             if (fileOrDirectory.isDirectory()) {
                 File[] files = fileOrDirectory.listFiles();

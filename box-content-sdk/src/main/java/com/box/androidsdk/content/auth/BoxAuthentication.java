@@ -401,6 +401,7 @@ public class BoxAuthentication {
                     } catch (BoxException e) {
                         mRefreshingTasks.remove(taskKey);
                         throw handleRefreshException(e, info);
+
                     }
                 }
                 if (refreshInfo != null) {

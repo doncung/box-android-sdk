@@ -379,6 +379,7 @@ public class BoxAuthentication {
                         refreshInfo = request.send();
                     } catch (BoxException e) {
                         throw handleRefreshException(session, e, info, userId);
+
                     }
                 }
                 if (refreshInfo != null) {

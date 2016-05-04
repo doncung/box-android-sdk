@@ -392,6 +392,7 @@ public class BoxAuthentication {
                     String refreshToken = info.refreshToken() != null ? info.refreshToken() : "";
                     String clientId = session.getClientId() != null ? session.getClientId() : BoxConfig.CLIENT_ID;
                     String clientSecret = session.getClientSecret() != null ? session.getClientSecret() : BoxConfig.CLIENT_SECRET;
+                    String userId = (info.getUser() != null) ? info.getUser().getId() : session.getUserId();
                     if (SdkUtils.isBlank(clientId) || SdkUtils.isBlank(clientSecret)) {
                         BoxException badRequest = new BoxException("client id or secret not specified", 400, "{\"error\": \"bad_request\",\n" +
                                 "  \"error_description\": \"client id or secret not specified\"}", null);

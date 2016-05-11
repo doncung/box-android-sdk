@@ -486,7 +486,7 @@ public class BoxSession extends BoxObject implements BoxAuthentication.AuthListe
      */
     @Override
     public void onAuthCreated(BoxAuthentication.BoxAuthenticationInfo info) {
-        if (sameUser(info)) {
+        if (sameUser(info) || getUserId() == null) {
             BoxAuthentication.BoxAuthenticationInfo.cloneInfo(mAuthInfo, info);
             if (sessionAuthListener != null) {
                 sessionAuthListener.onAuthCreated(info);
@@ -714,7 +714,6 @@ public class BoxSession extends BoxObject implements BoxAuthentication.AuthListe
                         launchAuthUI();
                     }
                 }
-
                 return mSession;
             }
         }

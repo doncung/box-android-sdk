@@ -679,7 +679,7 @@ public class BoxAuthentication {
                 jsonObject.add(entry.getKey(), entry.getValue().toJsonObject());
             }
             BoxEntity infoMapObj = new BoxEntity(jsonObject);
-            context.getSharedPreferences(AUTH_STORAGE_NAME, Context.MODE_PRIVATE).edit().putString(AUTH_MAP_STORAGE_KEY, infoMapObj.toJson()).apply();
+            context.getSharedPreferences(AUTH_STORAGE_NAME, Context.MODE_PRIVATE).edit().putString(AUTH_MAP_STORAGE_KEY, infoMapObj.toJson()).commit();
         }
 
         /**
@@ -689,7 +689,7 @@ public class BoxAuthentication {
          *                argument in your implementation.
          */
         protected void clearAuthInfoMap(Context context) {
-            context.getSharedPreferences(AUTH_STORAGE_NAME, Context.MODE_PRIVATE).edit().remove(AUTH_MAP_STORAGE_KEY).apply();
+            context.getSharedPreferences(AUTH_STORAGE_NAME, Context.MODE_PRIVATE).edit().remove(AUTH_MAP_STORAGE_KEY).commit();
         }
 
         /**
@@ -701,9 +701,9 @@ public class BoxAuthentication {
          */
         protected void storeLastAuthenticatedUserId(String userId, Context context) {
             if (SdkUtils.isEmptyString(userId)) {
-                context.getSharedPreferences(AUTH_STORAGE_NAME, Context.MODE_PRIVATE).edit().remove(AUTH_STORAGE_LAST_AUTH_USER_ID_KEY).apply();
+                context.getSharedPreferences(AUTH_STORAGE_NAME, Context.MODE_PRIVATE).edit().remove(AUTH_STORAGE_LAST_AUTH_USER_ID_KEY).commit();
             } else {
-                context.getSharedPreferences(AUTH_STORAGE_NAME, Context.MODE_PRIVATE).edit().putString(AUTH_STORAGE_LAST_AUTH_USER_ID_KEY, userId).apply();
+                context.getSharedPreferences(AUTH_STORAGE_NAME, Context.MODE_PRIVATE).edit().putString(AUTH_STORAGE_LAST_AUTH_USER_ID_KEY, userId).commit();
             }
         }
 

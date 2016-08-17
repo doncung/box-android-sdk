@@ -10,10 +10,12 @@ import com.box.androidsdk.content.BoxApiUser;
 import com.box.androidsdk.content.BoxConfig;
 import com.box.androidsdk.content.BoxConstants;
 import com.box.androidsdk.content.BoxException;
+import com.box.androidsdk.content.BoxFutureTask;
 import com.box.androidsdk.content.models.BoxEntity;
 import com.box.androidsdk.content.models.BoxJsonObject;
 import com.box.androidsdk.content.models.BoxSession;
 import com.box.androidsdk.content.models.BoxUser;
+import com.box.androidsdk.content.requests.BoxResponse;
 import com.box.androidsdk.content.utils.BoxLogUtils;
 import com.box.androidsdk.content.utils.SdkUtils;
 import com.eclipsesource.json.JsonObject;
@@ -118,6 +120,7 @@ public class BoxAuthentication {
 
     /**
      * Set the refresh provider if singleton was created with one.
+     * @return the custom refresh provider implementation if set.
      */
     public void setRefreshProvider(AuthenticationRefreshProvider refreshProvider){
         mRefreshProvider = refreshProvider;
@@ -333,7 +336,8 @@ public class BoxAuthentication {
     }
 
     private BoxFutureTask<BoxUser> doUserRefresh(final Context context, final BoxAuthenticationInfo info){
-        BoxSession tempSession = new BoxSession(null, info.accessToken(), null);
+
+        BoxSession tempSession = new BoxSession(context, info.accessToken(), null);
         BoxApiUser apiUser = new BoxApiUser(tempSession);
         BoxFutureTask<BoxUser> task = apiUser.getCurrentUserInfoRequest().toTask();
         task.addOnCompletedListener(new BoxFutureTask.OnCompletedListener<BoxUser>() {

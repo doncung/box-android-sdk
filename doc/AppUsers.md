@@ -16,6 +16,7 @@ return refreshedInfo;
 public boolean launchAuthUi(String userId, BoxSession session) {
 // return true if developer wishes to launch their own activity to interact with user for login.
 // Activity should call BoxAuthentication. BoxAuthentication.getInstance().onAuthenticated() or onAuthenticationFailure() as appropriate.
+// 
 
 return true;
 }
@@ -25,7 +26,19 @@ private static BoxAuthentication mAuthentication = new BoxAuthentication(REFRESH
 
 ```
 
+Alternatively if you can ensure it is called before any sessions are authenticated you can also call:
+
+```java
+
+BoxAuthentication.getInstance().setRefreshProvider(REFRESH_PROVIDER_IMPL);
+
+
+```
+
 Once set sessions can be used normally. The first time launching your auth UI. 
+When using App Users with our other SDKs, currently you MUST use this approach currently. 
+
+
 
 ```java
 

@@ -126,11 +126,19 @@ public class BoxAuthentication {
     }
 
     /**
-     * Get the refresh provider if singleton was created with one.
+     * Get the refresh provider if singleton was created with one, or one was set.
      * @return the custom refresh provider implementation if set.
      */
     public AuthenticationRefreshProvider getRefreshProvider(){
         return mRefreshProvider;
+    }
+
+    /**
+     * Set the refresh provider if singleton was created with one.
+     * @return the custom refresh provider implementation if set.
+     */
+    public void setRefreshProvider(AuthenticationRefreshProvider refreshProvider){
+        mRefreshProvider = refreshProvider;
     }
 
     public synchronized void startAuthenticationUI(BoxSession session) {

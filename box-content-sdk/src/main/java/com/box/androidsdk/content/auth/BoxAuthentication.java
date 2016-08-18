@@ -120,7 +120,6 @@ public class BoxAuthentication {
 
     /**
      * Set the refresh provider if singleton was created with one.
-     * @return the custom refresh provider implementation if set.
      */
     public void setRefreshProvider(AuthenticationRefreshProvider refreshProvider){
         mRefreshProvider = refreshProvider;

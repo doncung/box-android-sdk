@@ -132,11 +132,6 @@ class BoxRequestMultipart extends BoxHttpRequest {
                 this.writeOutput(entry.getValue());
             }
 
-            for (Map.Entry<String, String> entry : this.fields.entrySet()) {
-                this.writePartHeader(new String[][]{{"name", entry.getKey()}});
-                this.writeOutput(entry.getValue());
-            }
-
             this.writePartHeader(new String[][] {{"name", "filename"}, {"filename", this.filename}},
                 "application/octet-stream");
 
